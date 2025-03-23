@@ -213,3 +213,4 @@ By following these steps, we have:
 
 This setup improves system security while providing controlled access for new developers.
 
+### All the screenshots of the 3 tasks are attached in a folder "screenshot_logs"
