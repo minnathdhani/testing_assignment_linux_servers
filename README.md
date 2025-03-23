@@ -40,6 +40,9 @@ sudo yum install -y nmon                      # CentOS/RHEL
   ```
   Press `c` for CPU, `m` for memory, `d` for disk stats.
 
+- ![Task1-2](https://github.com/user-attachments/assets/5b4688fb-fca8-4e2b-806c-6dd628fc826b)
+
+
 ### 2. Disk Usage Monitoring
 #### Check Disk Space Using `df`:
 ```bash
@@ -69,6 +72,11 @@ Add:
 */10 * * * * ps aux --sort=-%cpu | head -10 > /var/log/cpu_usage.log
 */10 * * * * ps aux --sort=-%mem | head -10 > /var/log/mem_usage.log
 ```
+
+- ![Task1-3](https://github.com/user-attachments/assets/349ebfe2-20bd-43ac-921c-758b6525e74e)
+
+- ![Task1-4](https://github.com/user-attachments/assets/6b22b680-6cd5-4e38-9fa4-c72340b7bbb8)
+
 
 ## Logging and Reporting
 - System logs are stored in `/var/log/`.
