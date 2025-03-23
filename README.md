@@ -213,4 +213,106 @@ By following these steps, we have:
 
 This setup improves system security while providing controlled access for new developers.
 
+
+# Task-3: **Backup Configuration for Web Servers**
+
+**Objective:**
+Configure automated backups for Sarah’s Apache server and Mike’s Nginx server to ensure data integrity and recovery.
+
+---
+
+**Implementation Steps:**
+
+### Step 1: Create Backup Script
+
+'''
+sudo mkdir -p /backups
+sudo chmod 777 /backups
+'''
+
+## We will create a shell script (`backup_web_servers.sh`) to back up both Apache and Nginx configurations and document roots.
+
+```bash
+#!/bin/bash
+
+# Define backup directory
+BACKUP_DIR="/backups"
+DATE=$(date +"%Y-%m-%d")
+
+# Backup Apache server (Sarah)
+APACHE_CONF="/etc/apache2"
+APACHE_DOC_ROOT="/var/www/html"
+APACHE_BACKUP_FILE="$BACKUP_DIR/apache_backup_$DATE.tar.gz"
+
+tar -czf $APACHE_BACKUP_FILE $APACHE_CONF $APACHE_DOC_ROOT
+
+# Backup Nginx server (Mike)
+NGINX_CONF="/etc/nginx"
+NGINX_DOC_ROOT="/usr/share/nginx/html"
+NGINX_BACKUP_FILE="$BACKUP_DIR/nginx_backup_$DATE.tar.gz"
+
+tar -czf $NGINX_BACKUP_FILE $NGINX_CONF $NGINX_DOC_ROOT
+
+# Verify backup integrity
+ls -lh $APACHE_BACKUP_FILE > $BACKUP_DIR/backup_verification.log
+ls -lh $NGINX_BACKUP_FILE >> $BACKUP_DIR/backup_verification.log
+
+# Print confirmation message
+echo "Backup completed for Apache and Nginx servers on $DATE."
+```
+
+---
+
+### Step 2: Schedule Cron Jobs
+
+Sarah and Mike will schedule cron jobs to run the backup script every Tuesday at 12:00 AM.
+
+1. Open the crontab editor:
+   ```bash
+   crontab -e
+   ```
+2. Add the following line to schedule the backup:
+   ```
+   0 0 * * 2 /bin/bash /path/to/backup_web_servers.sh
+   ```
+
+This ensures that backups are created every Tuesday at midnight.
+
+3.  Verified backup integrity:
+'''
+ls -lh /backups/
+tar -tzf /backups/apache_backup_$(date +%F).tar.gz
+tar -tzf /backups/nginx_backup_$(date +%F).tar.gz
+'''
+---
+
+### Step 3: Verification and Logging
+
+After each backup, the script logs the file sizes in `/backups/backup_verification.log`. To check the verification log, run:
+```bash
+cat /backups/backup_verification.log
+```
+
+### Challenges & Solutions:
+
+| **Challenge** | **Solution** |  
+|--------------|------------|  
+| Apache config directory not found (`/etc/httpd/` missing) | Changed to `/etc/apache2/` after checking with `apachectl -V` |  
+| Permission denied for logging system monitoring | Used `sudo` and adjusted script to allow logging |
+
+**Expected Output:**
+- Cron job configurations are correctly set up.
+- Backup files (`apache_backup_YYYY-MM-DD.tar.gz` and `nginx_backup_YYYY-MM-DD.tar.gz`) are created in `/backups/`.
+- Verification logs confirm successful backups.
+
+---
+
+**Deliverables:**
+- Screenshots or terminal outputs showing successful execution of backup scripts.
+- A summary report detailing implementation steps and challenges encountered.
+- Backup verification logs demonstrating integrity of stored backups.
+
+This setup ensures that both Apache and Nginx servers have reliable, automated backups in place for disaster recovery.
+
+
 ### All the screenshots of the 3 tasks are attached in a folder "screenshot_logs"
