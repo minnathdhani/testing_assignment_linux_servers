@@ -126,6 +126,9 @@ sudo passwd Sarah
 sudo passwd Mike
 ```
 
+- ![Task2-1](https://github.com/user-attachments/assets/cc341abf-79cb-4b5d-890c-a501b197d933)
+
+
 Enter and confirm a strong password for each user when prompted.
 
 ---
@@ -138,6 +141,9 @@ sudo mkdir -p /home/Sarah/workspace
 sudo mkdir -p /home/mike/workspace
 ```
 
+- ![Task2-2](https://github.com/user-attachments/assets/0c11e70b-4d89-42c6-a6df-02f7838df102)
+
+
 Set ownership and permissions to restrict access:
 
 ```bash
@@ -147,6 +153,8 @@ sudo chown Mike:Mike /home/mike/workspace
 sudo chmod 700 /home/Sarah/workspace
 sudo chmod 700 /home/mike/workspace
 ```
+- ![Task2-3](https://github.com/user-attachments/assets/c36a2a86-ae3f-430e-b87d-8ca59d865437)
+
 
 ### Permissions Explanation:
 - `700` ensures only the respective user can access their directory.
@@ -167,6 +175,8 @@ PASS_MAX_DAYS   30
 PASS_MIN_DAYS   2
 PASS_WARN_AGE   7
 ```
+- ![Task2-4](https://github.com/user-attachments/assets/da66d58b-2786-4f5a-8885-0b9f4f180372)
+
 
 Apply the policy to Sarah and Mike:
 
@@ -175,12 +185,17 @@ sudo chage -M 30 -m 2 -W 7 Sarah
 sudo chage -M 30 -m 2 -W 7 Mike
 ```
 
+- ![Task2-5](https://github.com/user-attachments/assets/ebae7c72-a899-46a2-8768-cfe5ade7a2dd)
+
+
 ### Enforce Password Complexity Rules
 Install and configure `libpam-pwquality`:
 
+-![Task2-6](https://github.com/user-attachments/assets/85810e02-240d-408a-a895-495fca38b324)
+
+
 ```bash
 sudo apt install libpam-pwquality  # For Debian/Ubuntu
-sudo yum install pam_pwquality     # For RHEL/CentOS
 ```
 
 Edit the PAM password quality settings:
@@ -188,6 +203,7 @@ Edit the PAM password quality settings:
 ```bash
 sudo nano /etc/security/pwquality.conf
 ```
+- ![Task2-7](https://github.com/user-attachments/assets/4f4131d2-9bd8-4f3e-83f5-42e9e3a1a234)
 
 Set rules for password complexity:
 
@@ -198,6 +214,8 @@ ucredit = -1
 lcredit = -1
 ocredit = -1
 ```
+- ![Task2-set-rules](https://github.com/user-attachments/assets/510e5524-38bd-43a6-a66f-f12e08665d35)
+
 
 ### Rule Explanation:
 - At least **one digit**, **one uppercase**, **one lowercase**, and **one special character**.
@@ -212,6 +230,8 @@ sudo ls -ld /home/Sarah/workspace /home/mike/workspace
 sudo chage -l Sarah
 sudo chage -l Mike
 ```
+
+- ![Task2-8](https://github.com/user-attachments/assets/6b506961-6e39-4ac4-a9b9-c24fc454aa82)
 
 ---
 
@@ -243,6 +263,9 @@ sudo mkdir -p /backups
 sudo chmod 777 /backups
 ```
 
+- ![Task3-1](https://github.com/user-attachments/assets/66a061ac-c97f-4bb7-9ffa-16680c5df379)
+
+
 ## We will create a shell script (`backup_web_servers.sh`) to back up both Apache and Nginx configurations and document roots.
 
 ```bash
@@ -273,6 +296,9 @@ ls -lh $NGINX_BACKUP_FILE >> $BACKUP_DIR/backup_verification.log
 # Print confirmation message
 echo "Backup completed for Apache and Nginx servers on $DATE."
 ```
+- ![Task3-2](https://github.com/user-attachments/assets/5a2ae5dd-1f5b-4879-b8b9-1ef5f5c04f9c)
+
+- ![Task3-3](https://github.com/user-attachments/assets/75d24427-2025-4f33-b870-4fe7a1e0cfdd)
 
 ---
 
@@ -288,6 +314,9 @@ Sarah and Mike will schedule cron jobs to run the backup script every Tuesday at
    ```
    0 0 * * 2 /bin/bash /path/to/backup_web_servers.sh
    ```
+
+- ![Task3-4](https://github.com/user-attachments/assets/7076660f-bbea-419b-b280-cef780669f3d)
+
 
 This ensures that backups are created every Tuesday at midnight.
 
@@ -318,6 +347,11 @@ cat /backups/backup_verification.log
 - Backup files (`apache_backup_YYYY-MM-DD.tar.gz` and `nginx_backup_YYYY-MM-DD.tar.gz`) are created in `/backups/`.
 - Verification logs confirm successful backups.
 
+- ![Task3-5](https://github.com/user-attachments/assets/06882bd6-fd4d-4579-8365-aa5bc64e2257)
+
+- ![Task3-6](https://github.com/user-attachments/assets/0d0141ae-cf5d-471f-a074-2d6f733db61f)
+
+
 ---
 
 **Deliverables:**
@@ -328,4 +362,4 @@ cat /backups/backup_verification.log
 This setup ensures that both Apache and Nginx servers have reliable, automated backups in place for disaster recovery.
 
 
-### All the screenshots of the 3 tasks are attached in a folder "screenshot_logs"
+## All the screenshots of the 3 tasks are attached in a folder "screenshot_logs & log_files"
