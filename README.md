@@ -227,10 +227,13 @@ Configure automated backups for Sarah’s Apache server and Mike’s Nginx serve
 
 ### Step 1: Create Backup Script
 
-'''
+```
 sudo mkdir -p /backups
+```
+
+```
 sudo chmod 777 /backups
-'''
+```
 
 ## We will create a shell script (`backup_web_servers.sh`) to back up both Apache and Nginx configurations and document roots.
 
