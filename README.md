@@ -30,35 +30,35 @@ sudo yum install -y nmon                      # CentOS/RHEL
 #### Run Monitoring Tools
 - Start `htop`:
   ```bash
-  htop
+  sudo htop
   ```
 - Start `nmon`:
   ```bash
-  nmon
+  sudo nmon
   ```
   Press `c` for CPU, `m` for memory, `d` for disk stats.
 
 ### 2. Disk Usage Monitoring
 #### Check Disk Space Using `df`:
 ```bash
-df -h > /var/log/disk_usage.log
+sudo df -h > /var/log/disk_usage.log
 ```
 #### Check Folder Size Using `du`:
 ```bash
-du -sh /var/log /home > /var/log/folder_usage.log
+sudo du -sh /var/log /home > /var/log/folder_usage.log
 ```
 
 ### 3. Process Monitoring
 Identify resource-intensive processes using:
 ```bash
-ps aux --sort=-%cpu | head -10 > /var/log/cpu_usage.log
-ps aux --sort=-%mem | head -10 > /var/log/mem_usage.log
+sudo ps aux --sort=-%cpu | head -10 > /var/log/cpu_usage.log
+sudo ps aux --sort=-%mem | head -10 > /var/log/mem_usage.log
 ```
 
 ### 4. Automate System Metrics Logging
 To automate logging every 10 minutes, add the following cron jobs:
 ```bash
-crontab -e
+sudo crontab -e
 ```
 Add:
 ```bash
