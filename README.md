@@ -27,6 +27,8 @@ sudo yum install -y htop                      # CentOS/RHEL
 sudo apt update && sudo apt install -y nmon   # Ubuntu/Debian
 sudo yum install -y nmon                      # CentOS/RHEL
 ```
+- ![Task1-1](https://github.com/user-attachments/assets/86b7079d-fdf7-4501-8bbd-965461c3da67)
+
 #### Run Monitoring Tools
 - Start `htop`:
   ```bash
